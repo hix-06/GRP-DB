@@ -259,25 +259,15 @@ ClassMate is an academic organization application designed to help students mana
 | Aspect | Mobile Database | Web Database |
 |--------|----------------|--------------|
 | **Authentication** | None (local profile only) | Full Supabase Auth integration |
-| **Data Ownership** | Based on sender_id/uploaded_by | Based on auth.users foreign keys |
-| **Table Structure** | Communication-focused | Organization-focused |
-| **Security Model** | Device-level security | Row-level security policies |
 
 ### Data Storage Differences
 
 | Mobile Storage | Web Storage | Advantage |
 |----------------|-------------|-----------|
 | Local with remote sync | Cloud-primary | Mobile: Offline access / Web: Universal access |
-| Segregated storage buckets | Integrated file system | Mobile: Performance / Web: Simplicity |
-| Limited by device capacity | Limited by cloud quota | Mobile: Portable / Web: Expansive |
 
 ### Query Pattern Differences
 
-| Mobile Queries | Web Queries | Performance Impact |
-|----------------|-------------|-------------------|
-| Local database queries | Cloud database queries | Mobile: Faster / Web: Always current |
-| Limited by device capabilities | Limited by network latency | Mobile: Consistent / Web: Variable |
-| Optimized for minimal storage | Optimized for maximal features | Mobile: Efficient / Web: Feature-rich |
 
 ## 6. Conclusion: Platform-Specific Database Design
 
