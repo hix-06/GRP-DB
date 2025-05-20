@@ -210,16 +210,6 @@ ClassMate is an academic organization application designed to help students mana
    - Uses field-based filtering to show relevant content
    - Maintains file metadata with links to actual files
 
-4. **Data Persistence Strategy**
-   - Maintains local database for offline operation
-   - Stores file references locally with actual files in device storage
-   - Synchronizes with cloud when connection available
-
-5. **Querying Patterns**
-   - Primarily uses local queries for immediate response
-   - Filters content based on user's academic context
-   - Orders messages chronologically for conversation flow
-
 ### Web Application Database Functions
 
 1. **User Authentication and Profiles**
@@ -247,10 +237,6 @@ ClassMate is an academic organization application designed to help students mana
    - Stores deadline information for notifications
    - Tracks completion status for progress
 
-6. **Row-Level Security**
-   - Implements security through Supabase RLS policies
-   - Restricts data access based on user_id
-   - Ensures users can only modify their own data
 
 ## 5. Key Differences Between Mobile and Web Database Implementations
 
