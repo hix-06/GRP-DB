@@ -27,47 +27,33 @@ ClassMate is an academic organization application designed to help students mana
 
 ### Enhanced Relationship Diagram (Mobile App)
 ```
-                     +---------------+
-                     |     chats     |
-                     |---------------|
-                     | id (PK)       |
-                     | chat_name     |
-                     | admin_id      |<-----+
-                     | university    |      |
-                     | faculty       |      |
-                     | academic_year |      |
-                     | created_at    |      |
-                     | admin_name    |      |
-                     +---------------+      |
-                           |                |
-                           | 1:many         |
-                           v                |
-                     +---------------+      |
-                     |   messages    |      |
-                     |---------------|      |
-                     | id (PK)       |      |
-                     | chat_id (FK)  |      |
-                     | sender_id     |------+
-                     | sender_name   |
-                     | content       |
-                     | created_at    |
-                     | is_voice      |
-                     | voice_url     |
-                     +---------------+
-                           
-                     +---------------+
-                     |   summaries   |
-                     |---------------|
-                     | id (PK)       |
-                     | university    |
-                     | timestamp     |
-                     | faculty       |
-                     | academic_year |
-                     | file_url      |
-                     | file_name     |
-                     | subject       |
-                     | uploaded_by   |
-                     +---------------+
++---------------+       +---------------+
+|     chats     |       |   messages    |
+|---------------|       |---------------|
+| id (PK)       |<---+  | id (PK)       |
+| chat_name     |    |  | chat_id (FK)  |
+| admin_id      |----|--| sender_id     |
+| university    |    |  | sender_name   |
+| faculty       |    |  | content       |
+| academic_year |    |  | created_at    |
+| created_at    |    |  | is_voice      |
+| admin_name    |    |  | voice_url     |
++---------------+    |  +---------------+
+                     | 1:many
+                     v
+               +---------------+
+               |   summaries   |
+               |---------------|
+               | id (PK)       |
+               | university    |
+               | timestamp     |
+               | faculty       |
+               | academic_year |
+               | file_url      |
+               | file_name     |
+               | subject       |
+               | uploaded_by   |
+               +---------------+
 ```
 
 **Key Relationships:**
@@ -104,84 +90,48 @@ ClassMate is an academic organization application designed to help students mana
 
 ### Enhanced Relationship Diagram (Web App)
 ```
-                         +---------------+
-                         |  Auth.users   |
-                         |---------------|
-                         | id (PK)       |<-------------------------------+
-                         | email         |                                |
-                         | phone         |                                |
-                         | created_at    |                                |
-                         | last_sign_in  |                                |
-                         | confirmed_at  |                                |
-                         +---------------+                                |
-                                |                                         |
-                                | 1:1                                     |
-                                v                                         |
-                         +---------------+                                |
-                         |   students    |                                |
-                         |---------------|                                |
-                         | user_id (PK/FK)|                               |
-                         | full_name     |                                |
-                         | email         |                                |
-                         | faculty       |                                |
-                         | academic_year |                                |
-                         | created_at    |                                |
-                         +---------------+                                |
-                                                                          |
-                         +---------------+                                |
-                         |    files      |                                |
-                         |---------------|                                |
-                         | id (PK)       |                                |
-                         | user_id (FK)  |-----------------------------+  |
-                         | file_name     |                             |  |
-                         | file_path     |                             |  |
-                         | file_type     |                             |  |
-                         | file_size     |                             |  |
-                         | uploaded_at   |                             |  |
-                         +---------------+                             |  |
-                                                                       |  |
-                         +---------------+                             |  |
-                         |   schedules   |                             |  |
-                         |---------------|                             |  |
-                         | id (PK)       |                             |  |
-                         | user_id (FK)  |-----------------------------+  |
-                         | class_name    |                             |  |
-                         | day           |                             |  |
-                         | start_time    |                             |  |
-                         | end_time      |                             |  |
-                         | room          |                             |  |
-                         | professor     |                             |  |
-                         | created_at    |                             |  |
-                         +---------------+                             |  |
-                                                                       |  |
-                         +---------------+                             |  |
-                         |    archive    |                             |  |
-                         |---------------|                             |  |
-                         | id (PK)       |                             |  |
-                         | user_id (FK)  |-----------------------------+  |
-                         | user_name     |                             |  |
-                         | faculty       |                             |  |
-                         | academic_year |                             |  |
-                         | file_name     |                             |  |
-                         | file_path     |                             |  |
-                         | file_type     |                             |  |
-                         | file_size     |                             |  |
-                         | uploaded_at   |                             |  |
-                         +---------------+                             |  |
-                                                                       |  |
-                         +---------------+                             |  |
-                         |     tasks     |                             |  |
-                         |---------------|                             |  |
-                         | id (PK)       |                             |  |
-                         | user_id (FK)  |-----------------------------+  |
-                         | title         |                                |
-                         | description   |                                |
-                         | due_date      |                                |
-                         | priority      |                                |
-                         | completed     |                                |
-                         | created_at    |                                |
-                         +---------------+                                |
-                                                                          |
++---------------+       +---------------+
+|  Auth.users   |       |   students    |
+|---------------|       |---------------|
+| id (PK)       |<---->| user_id (PK/FK)|
+| email         | 1:1   | full_name     |
+| phone         |       | email         |
+| created_at    |       | faculty       |
+| last_sign_in  |       | academic_year |
+| confirmed_at  |       | created_at    |
++---------------+       +---------------+
+       |                        |
+       |------------------------|-------------------+
+       |                        |                   |
++---------------+       +---------------+    +---------------+
+|    files      |       |   schedules   |    |    archive    |
+|---------------|       |---------------|    |---------------|
+| id (PK)       |       | id (PK)       |    | id (PK)       |
+| user_id (FK)  |<--+   | user_id (FK)  |<---+ user_id (FK)  |<--+
+| file_name     |   |   | class_name    |    | user_name     |   |
+| file_path     |   |   | day           |    | faculty       |   |
+| file_type     |   |   | start_time    |    | academic_year |   |
+| file_size     |   |   | end_time      |    | file_name     |   |
+| uploaded_at   |   |   | room          |    | file_path     |   |
++---------------+   |   | professor     |    | file_type     |   |
+                    |   | created_at    |    | file_size     |   |
+                    |   +---------------+    | uploaded_at   |   |
+                    |                        +---------------+   |
+                    |                                          |
+                    +-------------------+                      |
+                                        |                      |
++---------------+                       |                      |
+|    tasks      |                       |                      |
+|---------------|                       |                      |
+| id (PK)       |                       |                      |
+| user_id (FK)  |<----------------------+----------------------+
+| title         |
+| description   |
+| due_date      |
+| priority      |
+| completed     |
+| created_at    |
++---------------+
 ```
 
 **Key Relationships:**
