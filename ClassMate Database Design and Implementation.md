@@ -30,17 +30,16 @@ ClassMate is an academic organization application designed to help students mana
 +---------------+       +---------------+
 |     chats     |       |   messages    |
 |---------------|       |---------------|
-| id (PK)       |<---+  | id (PK)       |
-| chat_name     |    |  | chat_id (FK)  |
-| admin_id      |----|--| sender_id     |
-| university    |    |  | sender_name   |
-| faculty       |    |  | content       |
-| academic_year |    |  | created_at    |
-| created_at    |    |  | is_voice      |
-| admin_name    |    |  | voice_url     |
-+---------------+    |  +---------------+
-                     | 1:many
-                     v
+| id (PK)       |       | id (PK)       |
+| chat_name     |       | chat_id (FK)  |
+| admin_id      |1::many| sender_id     |
+| university    |       | sender_name   |
+| faculty       |       | content       |
+| academic_year |       | created_at    |
+| created_at    |       | is_voice      |
+| admin_name    |       | voice_url     |
++---------------+       +---------------+
+
                +---------------+
                |   summaries   |
                |---------------|
